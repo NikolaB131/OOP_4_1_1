@@ -8,9 +8,9 @@ void Application::buildTree()
     cin >> root;
     setName(root); // установка имени корневого объекта
     Base *temp = this; // позже присваивается последний созданный объект
-    do {
-        cin >> parent;
-        cin >> child;
+    cin >> parent;
+    cin >> child;
+    while (parent != child) {
         if (parent == temp->getName()) // сравнение с именем предыдущего объекта
         {
             temp = new Base(temp, child); // родитель - указатель на последний созданный объект
@@ -19,8 +19,9 @@ void Application::buildTree()
         {
             temp = new Base(temp->getParent(), child); // родитель - указатель на родителя последнего созданного объекта
         }
+        cin >> parent;
+        cin >> child;
     }
-    while (parent != child);
 }
 
 void Application::showTree()
