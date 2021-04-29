@@ -5,11 +5,8 @@
 class Application : public Base
 {
 public:
-    Application(Base *parent);
+    using Base::Base; // подключает все конструкторы класса Base
     void buildTree(); // ввод дерева иерархии
-    void showTree(); // вывод дерева иерархии на экран
     int execApp(); // запуск приложения
-private:
-    void showObjectNext(Base *parent); // служебный метод
 };
 #endif
