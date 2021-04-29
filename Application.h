@@ -5,7 +5,7 @@
 class Application : public Base
 {
 public:
-    using Base::Base; // подключает все конструкторы класса Base
+    Application(Base *pParent):Base(pParent) {} // ссылается на конструктор класса Base
     void buildTree(); // ввод дерева иерархии
     int execApp(); // запуск приложения
 };
