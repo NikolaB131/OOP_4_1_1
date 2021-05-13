@@ -4,4 +4,4 @@ project(OOP_4_1_1)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static-libgcc")
 
-add_executable(OOP_4_1_1 main.cpp Base.cpp Application.cpp Future.cpp)
+add_executable(OOP_4_1_1 main.cpp Base.cpp Application.cpp Future2.cpp Future3.cpp Future3.h Future4.cpp Future4.h)
