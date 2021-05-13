@@ -24,8 +24,8 @@ void Base::setParent(Base *ptrParent)
 {
     if (ptrParent) // если указатель, переданный методу не 0, тогда true
     {
-        // удаление объекта из списка потомков у родителя
-        for (list<Base *>::iterator itChild = pParent->children.begin(); itChild != pParent->children.end() ; itChild++)
+        // удаление объекта из списка потомков у старого родителя
+        for (list<Base *>::iterator itChild = pParent->children.begin(); itChild != pParent->children.end(); itChild++)
         {
             if (*itChild == this)
             {
@@ -71,18 +71,16 @@ Base *Base::findObject(string name, Base *parent)
 
 void Base::showTree(Base *parent)
 {
-    if (parent == nullptr)
+    if (parent == nullptr) // для корневого объекта (чтобы с чего-то начать рекурсию)
         parent = this;
-    if (parent->pParent == nullptr)
+    if (parent->pParent == nullptr && children.empty()) // если в иерархии только корневой объект
     {
-        if (!children.empty()) // если у корневого объекта есть потомки
-        {
-            cout << getName() << endl; // вывод имени корневого объекта
-        }
-        else {
-            cout << getName();
-            return;
-        }
+        cout << getName();
+        return;
+    }
+    else if (parent->pParent == nullptr) // вывод корневого объекта
+    {
+        cout << getName() << endl;
     }
     list<Base *>::iterator itChild;
     cout << parent->getName(); // вывод имени родителя

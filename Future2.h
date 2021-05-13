@@ -5,7 +5,7 @@
 class Future2 : public Base
 {
 public:
-    using Base::Base; // подключает все конструкторы класса Base
+    Future(Base *pParent, string name):Base(pParent, name) {} // ссылается на конструктор класса Base
 private:
 };
 #endif
