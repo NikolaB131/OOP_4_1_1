@@ -7,7 +7,7 @@ class Application : public Base
 public:
     Application(Base *pParent):Base(pParent) {} // ссылается на конструктор класса Base
     void buildTree(); // ввод дерева иерархии
-    void buildStateTree(); // ввод дерева иерархии с состоянем объектов
+    void buildStateTree(); // ввод дерева иерархии с состоянием объектов
     int execApp(); // запуск приложения
 };
 #endif

@@ -51,21 +51,18 @@ Base *Base::findObject(string name, Base *parent)
 {
     if (parent == nullptr)
         parent = this;
-    list<Base *>::iterator itChild;
-    itChild = parent->children.begin(); // присвоение списку итератора
-    while (itChild != parent->children.end()) // проход по всем потомкам
+    if (parent->name == name) // если имя найдено
+        return parent;
+    if (parent->children.empty())
+        return nullptr;
+    list<Base *>::iterator itChild = parent->children.begin();
+    while (itChild != parent->children.end())
     {
-        if (parent->name == name) // если имя найдено
-            return parent; // возврат указателя на объект
+        if (findObject(name, *itChild) != nullptr) // спускаемся на уровень ниже
+            return findObject(name, *itChild);
+        else
+            findObject(name, *itChild); // если имя не найдено
         itChild++;
-    }
-    itChild--; // возврат итератора к последнему потомку списка
-    if ((*itChild)->children.empty()) // если объект не найден
-        return nullptr; // выход из рекурсии
-    else
-    {
-        cout << endl;
-        findObject(name, *itChild); // вызов того же самого для потмока
     }
 }
 
@@ -82,9 +79,8 @@ void Base::showTree(Base *parent)
     {
         cout << getName() << endl;
     }
-    list<Base *>::iterator itChild;
+    list<Base *>::iterator itChild = parent->children.begin(); // инициализация итератора списка
     cout << parent->getName(); // вывод имени родителя
-    itChild = parent->children.begin(); // присвоение списку итератора
     while (itChild != parent->children.end()) // проход по всем потомкам
     {
         cout << "  " << (*itChild)->getName(); // вывод имени потомка
@@ -102,5 +98,27 @@ void Base::showTree(Base *parent)
 
 void Base::showStateTree(Base *parent)
 {
+    if (parent == nullptr) // для корневого объекта (чтобы с чего-то начать рекурсию)
+        parent = this;
+    if (parent->pParent == nullptr)
+        cout << "Test result";
+    list<Base *>::iterator itChild = parent->children.begin();
+    while (itChild != parent->children.end()) // проход по всем потомкам
+    {
+        if ((*itChild)->getState() > 0)
+            cout << "The object " << (*itChild)->getName() << "is ready";
+        else if ((*itChild)->getState() < 0)
+            cout << "The object " << (*itChild)->getName() << "is not ready";
+        itChild++;
+    }
+    itChild--; // возврат итератора к последнему потомку списка
+    if ((*itChild)->children.empty()) // если у последнего потомка нету потомков
+        return; // выход из рекурсии
+    else
+    {
+        cout << endl;
+        showTree(*itChild); // вызов того же самого для потмока
+    }
+
 
 }

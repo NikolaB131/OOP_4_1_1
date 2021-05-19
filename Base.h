@@ -16,7 +16,7 @@ public:
     int getState(); // возвращает значение состояния объекта
     Base *findObject(string name, Base *parent = nullptr); // получение указателя на объект по его имени
     void showTree(Base *parent = nullptr); // вывод дерева иерархии на экран
-    void showStateTree(Base *parent); // вывод спписка готовности объектов
+    void showStateTree(Base *parent = nullptr); // вывод спписка готовности объектов
 private:
     string name;
     Base *pParent; // указатель на родителя

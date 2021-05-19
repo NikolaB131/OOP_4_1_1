@@ -1,15 +1,18 @@
 #include "Application.h"
 #include "Future2.h"
+#include "Future3.h"
+#include "Future4.h"
 
 void Application::buildTree()
 {
     string root, parent, child;
+    Base *temp = this; // позже присваивается последний созданный объект
     cin >> root;
     setName(root); // установка имени корневого объекта
-    Base *temp = this; // позже присваивается последний созданный объект
     cin >> parent;
     cin >> child;
-    while (parent != child) {
+    while (parent != child)
+    {
         if (parent == temp->getName()) // сравнение с именем предыдущего объекта
         {
             temp = new Future2(temp, child); // родитель - указатель на последний созданный объект
@@ -27,26 +30,46 @@ void Application::buildStateTree()
 {
     string root, parent, child;
     int relateClass, state;
-    bool unique = true;
+    Base *temp;
     cin >> root;
     setName(root); // установка имени корневого объекта
-    Base *temp = this; // позже присваивается последний созданный объект
     cin >> parent;
     cin >> child;
     cin >> relateClass;
     cin >> state;
-    while (parent != "endtree") {
-        if (child != temp->findObject(child)->getName())
-            switch (relateClass) {
-                case 1:
+    while (parent != "endtree")
+    {
+        if (findObject(child) == nullptr) // проверка на уникальность имени объекта
+        {
+            switch (relateClass) // опредление класса принадлежности объекта
+            {
+                case 2:
+                    temp = findObject(parent); // посик указателся на нужного родителя
+                    new Future2(temp, child); // создание объекта с классом принадлежности Future2
+                    break;
+                case 3:
+                    temp = findObject(parent); // посик указателся на нужного родителя
+                    new Future3(temp, child); // создание объекта с классом принадлежности Future3
+                    break;
+                case 4:
+                    temp = findObject(parent); // посик указателся на нужного родителя
+                    new Future4(temp, child); // создание объекта с классом принадлежности Future4
+                    break;
+                default:
+                    break;
             }
+        }
+        else // если имя объекта не уникально
+            break;
         cin >> parent;
         cin >> child;
+        cin >> relateClass;
+        cin >> state;
     }
 }
 
 int Application::execApp()
 {
-    showTree();
+    showStateTree();
     return 0;
 }
