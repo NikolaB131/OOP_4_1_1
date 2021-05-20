@@ -37,7 +37,7 @@ void Application::buildStateTree()
     cin >> child;
     cin >> relateClass;
     cin >> state;
-    while (parent != "endtree")
+    while (true)
     {
         if (findObject(child) == nullptr) // проверка на уникальность имени объекта
         {
@@ -62,6 +62,8 @@ void Application::buildStateTree()
         else // если имя объекта не уникально
             break;
         cin >> parent;
+        if (parent == "endtree")
+            break;
         cin >> child;
         cin >> relateClass;
         cin >> state;

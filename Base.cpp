@@ -53,17 +53,16 @@ Base *Base::findObject(string name, Base *parent)
         parent = this;
     if (parent->name == name) // если имя найдено
         return parent;
-    if (parent->children.empty())
-        return nullptr;
     list<Base *>::iterator itChild = parent->children.begin();
-    while (itChild != parent->children.end())
+    while (itChild != parent->children.end()) // если есть потомки
     {
         if (findObject(name, *itChild) != nullptr) // спускаемся на уровень ниже
             return findObject(name, *itChild);
-        else
-            findObject(name, *itChild); // если имя не найдено
         itChild++;
+//        if (itChild == parent->children.end())
+//            return nullptr;
     }
+    return nullptr;
 }
 
 void Base::showTree(Base *parent)
@@ -106,9 +105,9 @@ void Base::showStateTree(Base *parent)
     while (itChild != parent->children.end()) // проход по всем потомкам
     {
         if ((*itChild)->getState() > 0)
-            cout << "The object " << (*itChild)->getName() << "is ready";
+            cout << "The object " << (*itChild)->getName() << " is ready";
         else if ((*itChild)->getState() < 0)
-            cout << "The object " << (*itChild)->getName() << "is not ready";
+            cout << "The object " << (*itChild)->getName() << " is not ready";
         itChild++;
     }
     itChild--; // возврат итератора к последнему потомку списка
