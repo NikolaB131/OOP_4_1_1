@@ -33,6 +33,7 @@ void Application::buildStateTree()
     Base *temp;
     cin >> root;
     setName(root); // установка имени корневого объекта
+    setState(1); // установка состояния корневого объекта
     cin >> parent;
     cin >> child;
     cin >> relateClass;
@@ -44,16 +45,16 @@ void Application::buildStateTree()
             switch (relateClass) // опредление класса принадлежности объекта
             {
                 case 2:
-                    temp = findObject(parent); // посик указателся на нужного родителя
-                    new Future2(temp, child); // создание объекта с классом принадлежности Future2
+                    temp = new Future2(findObject(parent), child); // создание объекта с классом принадлежности Future2
+                    temp->setState(state); // устновка состояния объекта
                     break;
                 case 3:
-                    temp = findObject(parent); // посик указателся на нужного родителя
-                    new Future3(temp, child); // создание объекта с классом принадлежности Future3
+                    temp = new Future3(findObject(parent), child); // создание объекта с классом принадлежности Future3
+                    temp->setState(state); // устновка состояния объекта
                     break;
                 case 4:
-                    temp = findObject(parent); // посик указателся на нужного родителя
-                    new Future4(temp, child); // создание объекта с классом принадлежности Future4
+                    temp = new Future4(findObject(parent), child); // создание объекта с классом принадлежности Future4
+                    temp->setState(state); // устновка состояния объекта
                     break;
                 default:
                     break;
