@@ -57,12 +57,12 @@ Base *Base::findObject(string name, Base *parent)
     while (itChild != parent->children.end()) // если есть потомки
     {
         if (findObject(name, *itChild) != nullptr) // спускаемся на уровень ниже
-            return findObject(name, *itChild);
-        itChild++;
+            return findObject(name, *itChild); // если имя найдено
+        itChild++; // проверка следующего потомка
 //        if (itChild == parent->children.end())
 //            return nullptr;
     }
-    return nullptr;
+    return nullptr; // если имя не найдено
 }
 
 void Base::showTree(Base *parent)
