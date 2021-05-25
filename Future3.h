@@ -5,7 +5,7 @@
 class Future3 : public Base
 {
 public:
-    Future3(Base *pParent, string name):Base(pParent, name) {} // ссылается на конструктор класса Base
+    Future3(Base* pParent, string name):Base(pParent, name) {} // ссылается на конструктор класса Base
 private:
 };
 #endif

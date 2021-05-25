@@ -5,6 +5,6 @@
 int main()
 {
     Application firstApplication(nullptr);
-    firstApplication.buildStateTree();
+    firstApplication.buildPathTree();
     return firstApplication.execApp();
 }
