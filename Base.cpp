@@ -243,16 +243,15 @@ void Base::showSearch()
         {
             break;
         }
-        if (findObjectByPath(path)) // если объект найден
+        if (findObjectByPath(path) && path.rfind('/') != path.length()) // если объект найден и строка пути не содержит '/' в конце
         {
             if (path.substr(0, 2) == "//") // если использовался уникальный поиск по имени
             {
                 string fullPath;
-                Base* object = findObjectByPath(path);
-                Base* parent = object->getParent();
+                Base* parent = findObjectByPath(path)->getParent(); // получение указателя на родителя объекта
                 while (parent) // пока родитель не корневой объект
                 {
-                    fullPath = '/' + parent->getName() + fullPath;
+                    fullPath = '/' + parent->getName() + fullPath; // построение обратного пути
                     parent = parent->getParent();
                 }
                 cout << fullPath + '/' + path.substr(2) << " Object name: " << path.substr(2) << endl;
