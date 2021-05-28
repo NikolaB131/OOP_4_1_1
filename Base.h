@@ -21,7 +21,7 @@ public:
     string getPathItem(string path, int level); // получение необходимого имени из всего пути
     Base* getChild(string name); // получение указателя на потомка по его имени у родителя
     void showTree(Base* parent = nullptr); // вывод дерева иерархии на экран
-    void showStateTree(Base* parent = nullptr); // вывод спписка готовности объектов
+    void showStateTree(Base* parent = nullptr); // вывод списка готовности объектов
     void showBetterTree(Base* parent = nullptr, int level = 1); // вывод другого дерева иерархии на экран
     void showSearch(); // вывод результата поиска объекта
 private:
