@@ -116,7 +116,7 @@ Base* Base::findObjectByPath(string path)
         }
         return parent;
     }
-    return nullptr; // если path начинается не со "/" или "//"
+    return nullptr; // если path начинается не с "/" или "//"
 }
 
 string Base::getPathItem(string path, int level)
@@ -124,7 +124,7 @@ string Base::getPathItem(string path, int level)
     int end, start = 1, levelCurrent = 1; // индекс в start указывает на первый символ после первого '/'
     while (start != 0) // пока start не вышел за пределы строки с путём
     {
-        end = path.find('/', start); // следующий '/' после start, find() возвращает -1 если ничего не нашёл
+        end = path.find('/', start); // следующий '/' после start, find() возвращает -1 если ничего не нашел
         if (levelCurrent == level) // если необходимый уровень достигнут
         {
             return path.substr(start, end - start);
