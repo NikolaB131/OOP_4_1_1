@@ -235,7 +235,6 @@ void Base::showBetterTree(Base* parent, int level)
 void Base::showSearch()
 {
     string path;
-    cout << endl;
     while (true)
     {
         cin >> path;
@@ -245,25 +244,11 @@ void Base::showSearch()
         }
         if (findObjectByPath(path) && path.rfind('/') != path.length()) // если объект найден и строка пути не содержит '/' в конце
         {
-            if (path.substr(0, 2) == "//") // если использовался уникальный поиск по имени
-            {
-                string fullPath;
-                Base* parent = findObjectByPath(path)->getParent(); // получение указателя на родителя объекта
-                while (parent) // пока родитель не корневой объект
-                {
-                    fullPath = '/' + parent->getName() + fullPath; // построение обратного пути
-                    parent = parent->getParent();
-                }
-                cout << fullPath + '/' + path.substr(2) << " Object name: " << path.substr(2) << endl;
-            }
-            else if (path.substr(0, 1) == "/") // если использовался поиск по пути
-            {
-                cout << path << " Object name: " << path.substr(path.rfind('/') + 1) << endl;
-            }
+            cout << endl << path << " Object name: " << path.substr(path.rfind('/') + 1) ;
         }
         else
         {
-            cout << path << " Object not found" << endl;
+            cout << endl << path << " Object not found" ;
         }
     }
 }
